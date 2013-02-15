@@ -1,4 +1,6 @@
-DROP TABLE IF EXISTS `expense_types`;
+﻿DROP TABLE IF EXISTS `expense_types`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `expense_types` (
   `id` int(3) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,

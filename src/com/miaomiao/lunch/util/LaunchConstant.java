@@ -18,7 +18,8 @@ public class LaunchConstant {
 	public static final String USERS_PASSWORD = "password";
 	public static final String USERS_LEFTOVER = "leftover";
 	public static final String USERS_CREATED = "created";
-
+	public static final String[] USER_COLUMNS = {USERS_ID, USERS_NAME, USERS_PASSWORD, USERS_LEFTOVER, USERS_CREATED};
+	
 	public static final String EXPENSE_TYPE_TABLE = "expense_types";
 	public static final String EXPENSE_TYPE_ID = "id";
 	public static final String EXPENSE_TYPE_NAME = "name";

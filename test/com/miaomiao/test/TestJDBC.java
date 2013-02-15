@@ -5,34 +5,40 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.ParseException;
 
-import com.miaomiao.lunch.dao.ExpenseTypeDAO;
-import com.miaomiao.lunch.entities.ExpenseTypeEntity;
+import com.miaomiao.lunch.dao.UserDAO;
+import com.miaomiao.lunch.entities.UserEntity;
 
 public class TestJDBC {
 
 	/**
 	 * @param args
+	 * @throws ParseException 
 	 */
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 
-ExpenseTypeDAO eDAO = new ExpenseTypeDAO();
-ExpenseTypeEntity eType = new ExpenseTypeEntity();
-eType = eDAO.searchByName2("name4");
-StringBuffer str = new StringBuffer("");
+//ExpenseTypeDAO eDAO = new ExpenseTypeDAO();
+//ExpenseTypeEntity eType = new ExpenseTypeEntity();
+//eType = eDAO.searchByName("name4");
+//StringBuffer str = new StringBuffer("");
+//
+//
+//	str.append("\tname:");
+//	str.append(eType.getName());
+//	str.append("\tid:");
+//	str.append(eType.getId());
+//	str.append("\n");
+//
+//System.out.println(str.toString());
 
-
-	str.append("\tname:");
-	str.append(eType.getName());
-	str.append("\tid:");
-	str.append(eType.getId());
-	str.append("\n");
-
-System.out.println(str.toString());
-
+UserDAO uDAO = new UserDAO();
+UserEntity user = new UserEntity();
+//Date d = new Date();
+user = uDAO.searchByName("michaela2");
+System.out.println(user.getId().toString());
+System.out.println(user.getUserName().toString());
 		
 
 //		list = bDao.search(tableName, columnName, condition);

@@ -105,7 +105,6 @@ public class BaseDAO {
 				updateSql.replace(updateSql.lastIndexOf("AND"),
 						updateSql.lastIndexOf(" "), "");
 			}
-			System.out.println(updateSql.toString());
 			statement = connection.prepareStatement(updateSql.toString());
 
 			int i = 1;
@@ -224,7 +223,6 @@ public class BaseDAO {
 				querySql.replace(querySql.lastIndexOf("AND"),
 						querySql.lastIndexOf(" "), "");
 			}
-			System.out.println(querySql.toString());
 			statement = connection.prepareStatement(querySql.toString());
 
 			int i = 1;
