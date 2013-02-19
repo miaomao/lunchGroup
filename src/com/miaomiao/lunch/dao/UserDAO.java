@@ -1,7 +1,6 @@
 package com.miaomiao.lunch.dao;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -48,37 +47,37 @@ public class UserDAO extends BaseDAO {
 				LaunchConstant.USERS_ID, id);
 		return result;
 	}
-	
+
 	private List<UserEntity> convertToEntity(
 			List<Map<String, Object>> resultList) throws ParseException {
 		List<UserEntity> entityList = null;
 
 		if (null != resultList && resultList.size() > 0) {
-			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			
 			entityList = new ArrayList<UserEntity>();
 			UserEntity user;
 			for (Map<String, Object> map : resultList) {
 				user = new UserEntity();
 				Object obj = map.get(LaunchConstant.USERS_ID);
-				user.setId(null == obj ? null : Integer.parseInt(obj
-						.toString()));
+				user.setId(null == obj ? null
+						: Integer.parseInt(obj.toString()));
 				obj = map.get(LaunchConstant.USERS_NAME);
 				user.setUserName(null == obj ? null : obj.toString());
 				obj = map.get(LaunchConstant.USERS_PASSWORD);
 				user.setPassword(null == obj ? null : obj.toString());
 				obj = map.get(LaunchConstant.USERS_LEFTOVER);
-				user.setLeftOver(null == obj ? 0.0f : Float.parseFloat(obj.toString()));
+				user.setLeftOver(null == obj ? 0.0f : Float.parseFloat(obj
+						.toString()));
 				obj = map.get(LaunchConstant.USERS_CREATED);
-				user.setCreated(null == obj ? null : df.parse(obj.toString()));
+				user.setCreated(null == obj ? null : LaunchConstant.DATE_FORMAT
+						.parse(obj.toString()));
 
 				entityList.add(user);
 			}
 		}
 		return entityList;
 	}
-	
-	public UserEntity searchById(Integer id) throws ParseException{
+
+	public UserEntity searchById(Integer id) throws ParseException {
 		UserEntity user = null;
 
 		List<Map<String, Object>> resultList = new ArrayList<Map<String, Object>>();
@@ -98,8 +97,8 @@ public class UserDAO extends BaseDAO {
 		user = entityList.get(0);
 		return user;
 	}
-	
-	public UserEntity searchByName(String name) throws ParseException{
+
+	public UserEntity searchByName(String name) throws ParseException {
 		UserEntity user = null;
 
 		List<Map<String, Object>> resultList = new ArrayList<Map<String, Object>>();

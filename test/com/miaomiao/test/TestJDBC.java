@@ -6,9 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import com.miaomiao.lunch.dao.UserDAO;
-import com.miaomiao.lunch.entities.UserEntity;
+import com.miaomiao.lunch.dao.ExpenseItemDAO;
+import com.miaomiao.lunch.entities.ExpenseItemEntity;
 
 public class TestJDBC {
 
@@ -33,12 +35,27 @@ public class TestJDBC {
 //
 //System.out.println(str.toString());
 
-UserDAO uDAO = new UserDAO();
-UserEntity user = new UserEntity();
-//Date d = new Date();
-user = uDAO.searchByName("michaela2");
-System.out.println(user.getId().toString());
-System.out.println(user.getUserName().toString());
+//UserDAO uDAO = new UserDAO();
+//UserEntity user = new UserEntity();
+////Date d = new Date();
+//user = uDAO.searchByName("michaela2");
+//System.out.println(user.getId().toString());
+//System.out.println(user.getUserName().toString());
+		
+//ExpenseTypeEntity eType = new ExpenseTypeEntity();
+//ExpenseTypeDAO eDAO = new ExpenseTypeDAO();
+//eType.setName("eat");
+//eType.setAttr("-");
+//eDAO.insert(eType);
+
+ExpenseItemEntity eItem = new ExpenseItemEntity();
+ExpenseItemDAO eDAO = new ExpenseItemDAO();
+eItem.setUserId(1);
+eItem.seteTypeId(1);
+eItem.setValue(4.0f);
+SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+eItem.setCreated(df.parse((new Date()).toString()));
+eDAO.insert(eItem);
 		
 
 //		list = bDao.search(tableName, columnName, condition);

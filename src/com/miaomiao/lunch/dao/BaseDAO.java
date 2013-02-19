@@ -105,6 +105,7 @@ public class BaseDAO {
 				updateSql.replace(updateSql.lastIndexOf("AND"),
 						updateSql.lastIndexOf(" "), "");
 			}
+			System.out.println(updateSql.toString());
 			statement = connection.prepareStatement(updateSql.toString());
 
 			int i = 1;
@@ -265,6 +266,37 @@ public class BaseDAO {
 			Object[] args = new Object[1];
 			args[0] = id;
 			result = executeWithArgs(sql.toString(), args);
+		}
+		return result;
+	}
+
+	public boolean deleteByCondition(String tableName,
+			Map<String, Object> condition) {
+		boolean result = false;
+		StringBuffer sql = new StringBuffer();
+		Connection connection = getConnection();
+		PreparedStatement statement = null;
+
+		if (null != tableName && null != condition && !condition.isEmpty()) {
+
+			sql.append("DELETE FROM ");
+			sql.append(tableName);
+			sql.append(" WHERE ");
+			for (String key : condition.keySet()) {
+				sql.append(key + " = " + "?" + " AND ");
+			}
+			sql.replace(sql.lastIndexOf("AND"), sql.lastIndexOf(" "), "");
+		}
+		try {
+			statement = connection.prepareStatement(sql.toString());
+			int i = 1;
+			for (String key : condition.keySet()) {
+				statement.setObject(i, condition.get(key));
+				i++;
+			}
+			result = statement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return result;
 	}
