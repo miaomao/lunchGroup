@@ -9,25 +9,25 @@ public class ExpenseItemEntity implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Integer eTypeId;
-	private Integer userId;
+	private String eTypeName;
+	private String accountName;
 	private Date created = new Date();
 	private Float value = 0.0f;
 
-	public Integer geteTypeId() {
-		return eTypeId;
+	public String geteTypeName() {
+		return eTypeName;
 	}
 
-	public void seteTypeId(Integer eTypeId) {
-		this.eTypeId = eTypeId;
+	public void seteTypeName(String eTypeName) {
+		this.eTypeName = eTypeName;
 	}
 
-	public Integer getUserId() {
-		return userId;
+	public String getAccountName() {
+		return accountName;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
 	}
 
 	public Date getCreated() {

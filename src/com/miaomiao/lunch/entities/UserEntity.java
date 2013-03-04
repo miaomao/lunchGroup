@@ -12,8 +12,18 @@ public class UserEntity implements Serializable {
 	private String userName;
 	private String password = "";
 	private Date created = new Date();
+	private Date updated = new Date();
+	private Date lastLogin = new Date();
 	private Float leftOver = 0.0f;
-//	public static final String[] columns = {LaunchConstant.USERS_NAME, LaunchConstant.USERS_PASSWORD, LaunchConstant.USERS_LEFTOVER};
+	private Integer deleted = 0;
+
+	public Integer getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(Integer deleted) {
+		this.deleted = deleted;
+	}
 
 	public Float getLeftOver() {
 		return leftOver;
@@ -53,5 +63,21 @@ public class UserEntity implements Serializable {
 
 	public void setCreated(Date created) {
 		this.created = created;
+	}
+
+	public Date getUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(Date updated) {
+		this.updated = updated;
+	}
+
+	public Date getLastLogin() {
+		return lastLogin;
+	}
+
+	public void setLastLogin(Date lastLogin) {
+		this.lastLogin = lastLogin;
 	}
 }

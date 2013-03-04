@@ -42,8 +42,9 @@ public class BaseDAO {
 		}
 	}
 
-	public boolean insert(String tableName, Map<String, Object> map) {
-		boolean result = false;
+	public Integer insert(String tableName, Map<String, Object> map) {
+		Integer result = -1;
+
 		if (null == map || map.isEmpty() || null == tableName
 				|| "".equals(tableName)) {
 			return result;
@@ -70,7 +71,7 @@ public class BaseDAO {
 				statement.setObject(i, map.get(key));
 				i++;
 			}
-			result = statement.execute();
+			result = statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -79,9 +80,9 @@ public class BaseDAO {
 		return result;
 	}
 
-	public boolean update(String tableName, Map<String, Object> value,
+	public Integer update(String tableName, Map<String, Object> value,
 			Map<String, Object> condition) {
-		boolean result = false;
+		Integer result = -1;
 		if (null == tableName || "".equals(tableName) || null == value
 				|| value.isEmpty()) {
 			return result;
@@ -118,7 +119,7 @@ public class BaseDAO {
 				i++;
 			}
 
-			result = statement.execute();
+			result = statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

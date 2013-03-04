@@ -1,5 +1,6 @@
 package com.miaomiao.lunch.dao;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,21 +11,35 @@ import com.miaomiao.lunch.util.BaseUtil;
 import com.miaomiao.lunch.util.LaunchConstant;
 
 public class ExpenseTypeDAO extends BaseDAO {
-	public boolean insert(ExpenseTypeEntity eType) {
-		boolean result = false;
+	private String dbETable = LaunchConstant.EXPENSE_TYPE_TABLE;
+	private String dbEId = LaunchConstant.EXPENSE_TYPE_ID;
+	private String dbEName = LaunchConstant.EXPENSE_TYPE_NAME;
+	private String dbEAttr = LaunchConstant.EXPENSE_TYPE_ATTR;
+	private String dbECreated = LaunchConstant.EXPENSE_TYPE_CREATED;
+	private String dbEDeleted = LaunchConstant.EXPENSE_TYPE_DELETED;
+	private String[] dbEColumns = LaunchConstant.EXPNSE_TYPE_COLUMNS;
+	private DateFormat df = LaunchConstant.DATE_FORMAT;
+
+	/*
+	 * default return value is -1. Either (1) the row count for SQL Data
+	 * Manipulation Language (DML) statements or (2) 0 for SQL statements that
+	 * return nothing
+	 */
+	public Integer insert(ExpenseTypeEntity eType) {
+		Integer result = -1;
 		if (null != eType) {
-			String tableName = LaunchConstant.EXPENSE_TYPE_TABLE;
+
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put(LaunchConstant.EXPENSE_TYPE_NAME, eType.getName());
-			map.put(LaunchConstant.EXPENSE_TYPE_ATTR, eType.getAttr());
-			result = super.insert(tableName, map);
+			map.put(dbEName, eType.getName());
+			map.put(dbEAttr, eType.getAttr());
+			map.put(dbECreated, eType.getCreated());
+			result = super.insert(dbETable, map);
 		}
 		return result;
 	}
 
-	public boolean updateById(ExpenseTypeEntity eType) {
-		boolean result = false;
-		String tableName = LaunchConstant.EXPENSE_TYPE_TABLE;
+	public Integer updateById(ExpenseTypeEntity eType) {
+		Integer result = -1;
 		Map<String, Object> value = new HashMap<String, Object>();
 		Map<String, Object> condition = new HashMap<String, Object>();
 
@@ -32,7 +47,7 @@ public class ExpenseTypeDAO extends BaseDAO {
 		value.put(LaunchConstant.EXPENSE_TYPE_ATTR, eType.getAttr());
 		condition.put(LaunchConstant.EXPENSE_TYPE_ID, eType.getId());
 
-		result = update(tableName, value, condition);
+		result = update(dbETable, value, condition);
 		return result;
 	}
 
@@ -70,13 +85,12 @@ public class ExpenseTypeDAO extends BaseDAO {
 	public List<ExpenseTypeEntity> searchByAttr(String attr) {
 		List<ExpenseTypeEntity> entityList = null;
 		List<Map<String, Object>> resultList = new ArrayList<Map<String, Object>>();
-		String tableName = LaunchConstant.EXPENSE_TYPE_TABLE;
 		ArrayList<String> columnName = BaseUtil
 				.convertToList(LaunchConstant.EXPNSE_TYPE_COLUMNS);
 		Map<String, Object> condition = new HashMap<String, Object>();
 
 		condition.put(LaunchConstant.EXPENSE_TYPE_ATTR, attr);
-		resultList = super.search(tableName, columnName, condition);
+		resultList = super.search(dbETable, columnName, condition);
 		entityList = convertToEntity(resultList);
 		return entityList;
 	}
@@ -85,13 +99,12 @@ public class ExpenseTypeDAO extends BaseDAO {
 		ExpenseTypeEntity eType = null;
 
 		List<Map<String, Object>> resultList = new ArrayList<Map<String, Object>>();
-		String tableName = LaunchConstant.EXPENSE_TYPE_TABLE;
 		ArrayList<String> columnName = BaseUtil
 				.convertToList(LaunchConstant.EXPNSE_TYPE_COLUMNS);
 		Map<String, Object> condition = new HashMap<String, Object>();
 
 		condition.put(LaunchConstant.EXPENSE_TYPE_ID, id);
-		resultList = super.search(tableName, columnName, condition);
+		resultList = super.search(dbETable, columnName, condition);
 		if (resultList.size() <= 0) {
 			return eType;
 		}
@@ -106,13 +119,12 @@ public class ExpenseTypeDAO extends BaseDAO {
 		ExpenseTypeEntity eType = null;
 
 		List<Map<String, Object>> resultList = new ArrayList<Map<String, Object>>();
-		String tableName = LaunchConstant.EXPENSE_TYPE_TABLE;
 		ArrayList<String> columnName = BaseUtil
 				.convertToList(LaunchConstant.EXPNSE_TYPE_COLUMNS);
 		Map<String, Object> condition = new HashMap<String, Object>();
 
 		condition.put(LaunchConstant.EXPENSE_TYPE_NAME, name);
-		resultList = super.search(tableName, columnName, condition);
+		resultList = super.search(dbETable, columnName, condition);
 		if (resultList.size() <= 0) {
 			return eType;
 		}

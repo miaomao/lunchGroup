@@ -6,75 +6,40 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-import com.miaomiao.lunch.dao.ExpenseItemDAO;
-import com.miaomiao.lunch.entities.ExpenseItemEntity;
+import com.miaomiao.lunch.dao.ExpenseTypeDAO;
+import com.miaomiao.lunch.entities.ExpenseTypeEntity;
 
 public class TestJDBC {
 
 	/**
 	 * @param args
-	 * @throws ParseException 
+	 * @throws ParseException
 	 */
 
 	public static void main(String[] args) throws ParseException {
-
-//ExpenseTypeDAO eDAO = new ExpenseTypeDAO();
-//ExpenseTypeEntity eType = new ExpenseTypeEntity();
-//eType = eDAO.searchByName("name4");
-//StringBuffer str = new StringBuffer("");
-//
-//
-//	str.append("\tname:");
-//	str.append(eType.getName());
-//	str.append("\tid:");
-//	str.append(eType.getId());
-//	str.append("\n");
-//
-//System.out.println(str.toString());
-
-//UserDAO uDAO = new UserDAO();
-//UserEntity user = new UserEntity();
-////Date d = new Date();
-//user = uDAO.searchByName("michaela2");
-//System.out.println(user.getId().toString());
-//System.out.println(user.getUserName().toString());
+//		List<String> accounts = new ArrayList<String>();
+//		accounts.add("michaela3");
+//		accounts.add("michaela2");
+//		List<String> types = new ArrayList<String>();
+//		types.add("eat");
+//		types.add("play");
+//		String from = "2013-02-11";
+//		String to = "2013-02-25";
+//		ExpenseItemDAO eDAO = new ExpenseItemDAO();
+//		//eDAO.delete(accounts, types, from, to);
+//		System.out.println(eDAO.update(accounts, types, from, to, 0.02f));
 		
-//ExpenseTypeEntity eType = new ExpenseTypeEntity();
-//ExpenseTypeDAO eDAO = new ExpenseTypeDAO();
-//eType.setName("eat");
-//eType.setAttr("-");
-//eDAO.insert(eType);
+ExpenseTypeEntity e = new ExpenseTypeEntity();
+e.setName("testadd2");
+e.setAttr("+");
+ExpenseTypeDAO ed = new ExpenseTypeDAO();
 
-ExpenseItemEntity eItem = new ExpenseItemEntity();
-ExpenseItemDAO eDAO = new ExpenseItemDAO();
-eItem.setUserId(1);
-eItem.seteTypeId(1);
-eItem.setValue(4.0f);
-SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-eItem.setCreated(df.parse((new Date()).toString()));
-eDAO.insert(eItem);
+System.out.println( ed.insert(e));
 		
-
-//		list = bDao.search(tableName, columnName, condition);
-//		Map<String, Object> tempMap = null;
-//		StringBuffer tempStr = null;
-//		for (int i = 0; i < list.size(); i++) {
-//			tempMap = list.get(i);
-//			if (null != tempMap && !tempMap.isEmpty()) {
-//				tempStr = new StringBuffer("");
-//				for (String key : tempMap.keySet()) {
-//					tempStr.append(key);
-//					tempStr.append(":");
-//					tempStr.append(tempMap.get(key).toString());
-//					tempStr.append("\t");
-//				}
-//			}
-//			System.out.println(tempStr.toString());
-//		}
-//		
+        
+        
+		//
 		// eDAO.deleteWithArgs(eType);
 
 		// ExpenseTypeEntity eType = new ExpenseTypeEntity();

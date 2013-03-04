@@ -1,6 +1,7 @@
 package com.miaomiao.lunch.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class ExpenseTypeEntity implements Serializable {
 
@@ -11,6 +12,24 @@ public class ExpenseTypeEntity implements Serializable {
 	private Integer id;
 	private String name;
 	private String attr;
+	private Date created = new Date();
+	private Integer deleted = 0;
+
+	public Integer getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(Integer deleted) {
+		this.deleted = deleted;
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
+	}
 
 	public String getAttr() {
 		return attr;
